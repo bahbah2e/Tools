@@ -10,6 +10,7 @@
     [Guid("7D546B1B-D333-421F-B8EB-732955A06B55"), ComVisible(true)]
     public class PstContextMenu : ContextMenuExt
     {
+        private const string FriendlyName = "PST Destroyer";
         public PstContextMenu()
         {
             this.MenuText = "&Destroy";
@@ -17,6 +18,12 @@
             this.VerbHelpText = "Destroy PST file";
             this.VerbCanonicalName = "PstDestroyer";
             this.SupportedFileTypes.Add(".pst");
+        }
+
+        public override string RegistryFriendlyName
+        {
+            get { return FriendlyName; }
+            set {}
         }
 
         protected override string MenuText { get; set; }

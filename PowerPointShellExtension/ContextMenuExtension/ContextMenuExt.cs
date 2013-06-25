@@ -9,7 +9,6 @@
     [ClassInterface(ClassInterfaceType.None)]
     public abstract class ContextMenuExt : IShellExtInit, IContextMenu
     {
-        private const string RegsistryFriendlyName = "Custom Context Menu";
         private uint IDM_DISPLAY = 0;
 
         private IntPtr menuBmp = IntPtr.Zero;
@@ -50,6 +49,7 @@
             set { this.supportedFiletTypes = value; }
         }
 
+        public abstract string RegistryFriendlyName { get; set; }
         protected abstract string Verb { get; set; }
         protected abstract string VerbCanonicalName { get; set; }
         protected abstract string VerbHelpText { get; set; }
@@ -59,11 +59,17 @@
         {
             try
             {
-                ShellExtensionRegistry.RegisterShellExtContextMenuHandler(t.GUID, "*", RegsistryFriendlyName);
+                ContextMenuExt extension = Activator.CreateInstance(t) as ContextMenuExt;
+
+                if (extension != null)
+                {
+                    ShellExtensionRegistry.RegisterShellExtContextMenuHandler(t.GUID, "*", extension.RegistryFriendlyName);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message); // Log the error
+                Console.ReadLine();
                 throw;  // Re-throw the exception
             }
         }
@@ -73,7 +79,12 @@
         {
             try
             {
-                ShellExtensionRegistry.UnregisterShellExtContextMenuHandler(t.GUID, "*", RegsistryFriendlyName);
+                ContextMenuExt extension = Activator.CreateInstance(t) as ContextMenuExt;
+
+                if (extension != null)
+                {
+                    ShellExtensionRegistry.UnregisterShellExtContextMenuHandler(t.GUID, "*", extension.RegistryFriendlyName);
+                }
             }
             catch (Exception ex)
             {
