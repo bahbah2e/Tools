@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionRegistrarExtension
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionTest", "ExtensionTest\ExtensionTest.csproj", "{FD15A71D-77FB-49A3-9EA4-665E345B5C8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandShellGenerator", "CommandShellGenerator\CommandShellGenerator.csproj", "{BDEBACBC-9847-4697-B621-93EC7E6E3D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPromptHereExtension", "CommandPromptHereExtension\CommandPromptHereExtension.csproj", "{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{FD15A71D-77FB-49A3-9EA4-665E345B5C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD15A71D-77FB-49A3-9EA4-665E345B5C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD15A71D-77FB-49A3-9EA4-665E345B5C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDEBACBC-9847-4697-B621-93EC7E6E3D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDEBACBC-9847-4697-B621-93EC7E6E3D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDEBACBC-9847-4697-B621-93EC7E6E3D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDEBACBC-9847-4697-B621-93EC7E6E3D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
