@@ -51,6 +51,7 @@
                 }
                 catch (Exception e)
                 {
+                    MessageBox.Show(e.Message);
                     MessageBox.Show("Be sure ExtensionRegistrar.exe is set in the system path.");
                 }
             }
