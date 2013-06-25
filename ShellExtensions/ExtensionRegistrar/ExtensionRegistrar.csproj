@@ -53,6 +53,10 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandPromptHereExtension\CommandPromptHereExtension.csproj">
+      <Project>{4d5ae04c-f8dc-4b51-9d73-a16dadc92fcf}</Project>
+      <Name>CommandPromptHereExtension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtensionRegistrarExtension\ExtensionRegistrarExtension.csproj">
       <Project>{ec0b0a5b-aea9-4384-97d7-ab6d2ac01a32}</Project>
       <Name>ExtensionRegistrarExtension</Name>
