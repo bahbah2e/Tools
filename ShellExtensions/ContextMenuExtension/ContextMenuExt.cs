@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Specialized;
+    using System.IO;
     using System.Runtime.InteropServices;
     using System.Runtime.InteropServices.ComTypes;
     using System.Text;
@@ -54,6 +55,26 @@
         protected abstract string VerbCanonicalName { get; set; }
         protected abstract string VerbHelpText { get; set; }
 
+        public bool IsFolderExtension
+        {
+            get
+            {
+                if (this.SupportedFileTypes.Count > 1) { return false; }
+
+                bool isFolderExtension = false;
+
+                foreach (string extensionType in this.SupportedFileTypes)
+                {
+                    if (extensionType == "Folder")
+                    {
+                        isFolderExtension = true;
+                    }
+                }
+
+                return isFolderExtension;
+            }
+        }
+
         [ComRegisterFunction()]
         public static void Register(Type t)
         {
@@ -61,7 +82,13 @@
             {
                 ContextMenuExt extension = Activator.CreateInstance(t) as ContextMenuExt;
 
-                if (extension != null)
+                if (extension == null) { return; }
+
+                if (extension.IsFolderExtension)
+                {
+                    ShellExtensionRegistry.RegisterShellExtContextMenuHandler(t.GUID, "Folder", extension.RegistryFriendlyName);
+                }
+                else
                 {
                     ShellExtensionRegistry.RegisterShellExtContextMenuHandler(t.GUID, "*", extension.RegistryFriendlyName);
                 }
@@ -80,8 +107,13 @@
             try
             {
                 ContextMenuExt extension = Activator.CreateInstance(t) as ContextMenuExt;
+                if (extension == null) { return; }
 
-                if (extension != null)
+                if (extension.IsFolderExtension)
+                {
+                    ShellExtensionRegistry.UnregisterShellExtContextMenuHandler(t.GUID, "Folder", extension.RegistryFriendlyName);
+                }
+                else
                 {
                     ShellExtensionRegistry.UnregisterShellExtContextMenuHandler(t.GUID, "*", extension.RegistryFriendlyName);
                 }
@@ -197,17 +229,28 @@
 
                 // This code sample displays the custom context menu item when only 
                 // one file is selected. 
-                //if (nFiles == 1)
-                //{
-                //    // Get the path of the file.
-                //    StringBuilder fileName = new StringBuilder(260);
-                //    if (0 == NativeMethods.DragQueryFile(hDrop, 0, fileName,
-                //        fileName.Capacity))
-                //    {
-                //        Marshal.ThrowExceptionForHR(WinError.E_FAIL);
-                //    }
-                //    this.selectedFile = fileName.ToString();
-                //}
+                if (nFiles == 1 && this.IsFolderExtension)
+                {
+                    // Get the path of the file.
+                    StringBuilder fileName = new StringBuilder(260);
+                    if (0 == NativeMethods.DragQueryFile(hDrop, 0, fileName,
+                        fileName.Capacity))
+                    {
+                        Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                    }
+                    DirectoryInfo di = new DirectoryInfo(fileName.ToString());
+                    
+                    if (di.Exists)
+                    {
+                        this.selectedFiles.Add(fileName.ToString());
+                        return;
+                    }
+                    else
+                    {
+                        Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                    }
+
+                }
                 //else
                 //{
                 //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
