@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionTest", "ExtensionT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPromptHereExtension", "CommandPromptHereExtension\CommandPromptHereExtension.csproj", "{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagesToPpt", "ImagesToPpt\ImagesToPpt.csproj", "{923780A1-5777-417D-820A-9FB47FF4550E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PptImageImportExtension", "PptImageImportExtension\PptImageImportExtension.csproj", "{B7315E60-CB98-4F38-A191-CD59BCD8F4DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D5AE04C-F8DC-4B51-9D73-A16DADC92FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923780A1-5777-417D-820A-9FB47FF4550E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{923780A1-5777-417D-820A-9FB47FF4550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{923780A1-5777-417D-820A-9FB47FF4550E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{923780A1-5777-417D-820A-9FB47FF4550E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7315E60-CB98-4F38-A191-CD59BCD8F4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7315E60-CB98-4F38-A191-CD59BCD8F4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7315E60-CB98-4F38-A191-CD59BCD8F4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7315E60-CB98-4F38-A191-CD59BCD8F4DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
