@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ScreenCapture.Test
+﻿namespace ScreenCapture.Test
 {
-    class TestNotepadCapture
+    using System.Diagnostics;
+    using System.Threading;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class TestNotepadCapture
     {
+        [TestMethod]
+        public void test_capture_notepad()
+        {
+            Process.Start("notepad.exe");
+            
+            // Sleep long enough to allow the application to start
+            Thread.Sleep(2000);
+
+            AutomationElementCapture capture = new AutomationElementCapture();
+            capture.CaptureElementByName("Untitled - Notepad", "notepad.exe");
+        }
     }
 }
