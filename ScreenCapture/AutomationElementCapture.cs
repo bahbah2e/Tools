@@ -23,9 +23,25 @@
             CaptureAutomationElementByName(elementName, this.CaptureFolder, fileName);
         }
 
+        public void CaptureElementAutomationId(string elementAutomationId, string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(this.CaptureFolder))
+            {
+                this.CaptureFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            }
+
+            CaptureAutomationElementByAutomationId(elementAutomationId, this.CaptureFolder, fileName);
+        }
+
         private static void CaptureAutomationElementByName(string elementName, string path, string fileName)
         {
             AutomationElement element = FindElement(elementName);
+            CaptureAutomationElement(element, path, fileName);
+        }
+
+        private static void CaptureAutomationElementByAutomationId(string elementAutomationId, string path, string fileName)
+        {
+            AutomationElement element = FindElementById(elementAutomationId);
             CaptureAutomationElement(element, path, fileName);
         }
 
@@ -64,6 +80,25 @@
             while (elementNode != null)
             {
                 if (elementNode.Current.Name.Contains(elementName))
+                {
+                    return elementNode;
+                }
+
+                elementNode = TreeWalker.ControlViewWalker.GetNextSibling(elementNode);
+            }
+
+            return null;
+        }
+
+        private static AutomationElement FindElementById(string elementAutomationId)
+        {
+            AutomationElement root = AutomationElement.RootElement;
+
+            AutomationElement elementNode = TreeWalker.ControlViewWalker.GetFirstChild(root);
+
+            while (elementNode != null)
+            {
+                if (elementNode.Current.AutomationId == elementAutomationId)
                 {
                     return elementNode;
                 }
