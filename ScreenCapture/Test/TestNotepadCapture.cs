@@ -18,6 +18,7 @@
 
             AutomationElementCapture capture = new AutomationElementCapture();
             capture.CaptureElementByName("Untitled - Notepad", "notepad.exe");
+            capture.CaptureElementAutomationId("15", "Untitled - Notepad", "notepadbutton.exe");
         }
     }
 }
